@@ -252,38 +252,6 @@ Google Cloud Run
 
 ---
 
-# 📂 Project Structure
-
-ActiveFlow-AI/
-
-├── src/
-
-│   ├── components/
-
-│   ├── pages/
-
-│   ├── services/
-
-│   └── App.jsx
-
-│
-
-├── public/
-
-│
-
-├── firebase/
-
-│
-
-├── package.json
-
-│
-
-└── README.md
-
----
-
 # 🚀 Getting Started
 
 ## Clone Repository
@@ -322,6 +290,10 @@ npm run dev
 Built for:
 
 Vibe2Ship by Coding Ninjas x Google For Developers
+
+Built by:
+
+Sandeep Gupta
 
 Problem Statement:
 

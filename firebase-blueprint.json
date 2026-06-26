@@ -1,0 +1,91 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "Information about the user and their preferences",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "The unique Firebase UID of the user" },
+        "email": { "type": "string", "description": "User email address" },
+        "preferences": { "type": "object", "description": "Productivity preferences" },
+        "patterns": { "type": "object", "description": "AI predicted or user reported productivity patterns" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "email"]
+    },
+    "Task": {
+      "title": "Task or Goal",
+      "description": "A user entered productivity goal, analyzed by AI",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "goal": { "type": "string" },
+        "priority": { "type": "string", "enum": ["LOW", "MEDIUM", "HIGH"] },
+        "status": { "type": "string", "enum": ["pending", "completed"] },
+        "dueDate": { "type": "string", "format": "date" },
+        "estimatedEffort": { "type": "string" },
+        "breakdown": { "type": "array" },
+        "schedule": { "type": "array" },
+        "timeline": { "type": "array" },
+        "recommendedActions": { "type": "array" },
+        "riskLevel": { "type": "string", "enum": ["LOW", "MEDIUM", "HIGH"] },
+        "riskReason": { "type": "string" },
+        "riskSuggestions": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "goal", "status"]
+    },
+    "Plan": {
+      "title": "Productivity Plan",
+      "description": "An AI-generated daily plan or emergency rescue plan",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "title": { "type": "string" },
+        "type": { "type": "string", "enum": ["daily", "rescue"] },
+        "focus": { "type": "string" },
+        "tasks": { "type": "array" },
+        "timeline": { "type": "array" },
+        "aiExplanations": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "type", "focus"]
+    },
+    "ChatSession": {
+      "title": "Chat Session",
+      "description": "A productivity coaching conversation between the user and AI",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "messages": { "type": "array" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "messages"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User preferences and productivity memory"
+    },
+    "/tasks/{taskId}": {
+      "schema": "Task",
+      "description": "User tasks and analyzed goals"
+    },
+    "/plans/{planId}": {
+      "schema": "Plan",
+      "description": "User-specific daily or emergency plans"
+    },
+    "/chats/{chatId}": {
+      "schema": "ChatSession",
+      "description": "Chat context and histories"
+    }
+  }
+}
